@@ -1,6 +1,8 @@
 package com.arash.edu.gateway.service;
 
 import com.arash.edu.gateway.ribbon.*;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,22 @@ public class HelloInvoker {
     private final RestTemplateLoadBalancer restTemplateLoadBalancer;
     private final FeignLoadBalancer feignLoadBalancer;
 
+    @HystrixCommand(fallbackMethod = "invokeHelloFallback",
+    threadPoolKey = "helloServiceThreadPool",
+    threadPoolProperties = {
+            @HystrixProperty(name = "coreSize", value = "30"),
+            @HystrixProperty(name = "maxQueueSize", value = "10")
+    },
+    commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
+    })
     public String invokeHello(RibbonClientType ribbonClientType) {
         RibbonLoadBalancer loadBalancer = pickLoadBalancer(ribbonClientType);
         return loadBalancer.invokeGetMethod(SERVICE_NAME, METHOD_PATH, String.class);
+    }
+
+    public String invokeHelloFallback(RibbonClientType ribbonClientType) {
+        return "This is a fallback message, sorry. Anyway, it is better than exception.";
     }
 
     private RibbonLoadBalancer pickLoadBalancer(RibbonClientType ribbonClientType) {
