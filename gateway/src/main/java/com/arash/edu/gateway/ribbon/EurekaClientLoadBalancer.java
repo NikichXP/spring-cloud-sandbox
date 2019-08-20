@@ -22,7 +22,10 @@ public class EurekaClientLoadBalancer implements RibbonLoadBalancer {
         if (instances.isEmpty()) {
             throw new IllegalStateException("No instance of " + " found for serving " + methodPath + " request");
         }
-        String uri = String.format("%s%s", instances.get(0).getHomePageUrl(), methodPath);
+        InstanceInfo serviceLookup = instances.get(0);
+        String ipAddr = serviceLookup.getIPAddr();
+        int port = serviceLookup.getPort();
+        String uri = String.format("http://%s:%d/%s", ipAddr, port, methodPath);
         return REST_TEMPLATE.getForObject(uri, responseType);
     }
 }
