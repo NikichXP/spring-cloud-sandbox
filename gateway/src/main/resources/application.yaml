@@ -11,3 +11,6 @@ eureka:
 spring:
   application:
     name: gateway
+feign:
+  hystrix:
+    enabled: true

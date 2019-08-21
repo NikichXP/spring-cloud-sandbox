@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient("service-a")
+@FeignClient(value = "service-a", fallback = MockControllerFallback.class)
 @RequestMapping(method = RequestMethod.GET, value = "/api/v1")
 public interface MockControllerApi {
 
