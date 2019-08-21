@@ -1,5 +1,5 @@
 server:
-  port: 8002
+  port: 8003
 eureka:
   instance:
     prefer-ip-address: true
@@ -10,4 +10,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 spring:
   application:
-    name: service
+    name: turbine

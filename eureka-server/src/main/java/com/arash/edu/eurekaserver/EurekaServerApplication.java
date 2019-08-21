@@ -1,4 +1,4 @@
-package com.anton.edu.eurekaserver;
+package com.arash.edu.eurekaserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

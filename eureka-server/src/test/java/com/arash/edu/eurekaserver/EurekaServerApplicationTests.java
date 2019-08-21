@@ -1,4 +1,4 @@
-package com.anton.edu.eurekaserver;
+package com.arash.edu.eurekaserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
