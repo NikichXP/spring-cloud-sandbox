@@ -20,7 +20,7 @@ public class DummyService {
     public String callServices() {
         StringBuilder sb = new StringBuilder();
         call(mockProxy::method1, sb);
-        call(dummyProxy::methodB, sb);
+        call(dummyProxy::methodA, sb);
         call(mockProxy::method2, sb);
         call(dummyProxy::methodB, sb);
         call(mockProxy::method3, sb);
