@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 @RequiredArgsConstructor
 @Service
@@ -18,31 +19,22 @@ public class DummyService {
 
     public String callServices() {
         StringBuilder sb = new StringBuilder();
-        if (coinFlip()) {
-            sb.append(mockProxy.method1()).append("\n");
-        }
-        if (coinFlip()) {
-            sb.append(dummyProxy.methodA()).append("\n");
-        }
-        if (coinFlip()) {
-            sb.append(mockProxy.method2()).append("\n");
-        }
-        if (coinFlip()) {
-            sb.append(dummyProxy.methodB()).append("\n");
-        }
-        if (coinFlip()) {
-            sb.append(mockProxy.method3()).append("\n");
-        }
-        if (coinFlip()) {
-            sb.append(dummyProxy.methodC()).append("\n");
-        }
-        if (coinFlip()) {
-            sb.append(mockProxy.method4()).append("\n");
-        }
-        if (coinFlip()) {
-            sb.append(dummyProxy.methodD()).append("\n");
-        }
+        call(mockProxy::method1, sb);
+        call(dummyProxy::methodB, sb);
+        call(mockProxy::method2, sb);
+        call(dummyProxy::methodB, sb);
+        call(mockProxy::method3, sb);
+        call(dummyProxy::methodC, sb);
+        call(mockProxy::method4, sb);
+        call(dummyProxy::methodD, sb);
         return sb.toString();
+    }
+
+    private void call(Supplier<String> method, StringBuilder sb) {
+        if (coinFlip()) {
+            String methodResponse = method.get();
+            sb.append("\n").append(methodResponse);
+        }
     }
 
     private boolean coinFlip() {
