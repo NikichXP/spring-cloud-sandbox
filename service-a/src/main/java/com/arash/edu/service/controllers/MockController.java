@@ -1,37 +1,37 @@
-package com.arash.edu.serviceb.controllers;
+package com.arash.edu.service.controllers;
 
-import com.arash.edu.api.DummyControllerApi;
+import com.arash.edu.api.MockControllerApi;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Random;
 
 @RestController
-public class DummyController implements DummyControllerApi {
+public class MockController implements MockControllerApi {
 
     private static final Random RANDOM = new Random();
 
     @Override
-    public String methodA() {
+    public String method1() {
         randomDelay();
-        return "service-b-method-a";
+        return "service-a-method-1";
     }
 
     @Override
-    public String methodB() {
+    public String method2() {
         randomDelay();
-        return "service-b-method-b";
+        return "service-a-method-2";
     }
 
     @Override
-    public String methodC() {
+    public String method3() {
         randomDelay();
-        return "service-b-method-c";
+        return "service-a-method-3";
     }
 
     @Override
-    public String methodD() {
+    public String method4() {
         randomDelay();
-        return "service-b-method-d";
+        return "service-a-method-4";
     }
 
     private static void randomDelay() {

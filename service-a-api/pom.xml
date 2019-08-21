@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.arash.edu</groupId>
         <artifactId>cloud-sandbox</artifactId>
+        <groupId>com.arash.edu</groupId>
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>service-b-api</artifactId>
+    <artifactId>service-a-api</artifactId>
 
     <dependencies>
         <dependency>

@@ -22,6 +22,7 @@
         <module>service-a</module>
         <module>service-b</module>
         <module>service-b-api</module>
+        <module>service-a-api</module>
     </modules>
 
 
