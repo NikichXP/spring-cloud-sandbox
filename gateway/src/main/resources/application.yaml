@@ -14,8 +14,21 @@ spring:
 feign:
   hystrix:
     enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
 management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream
+        include: hystrix.stream,info
